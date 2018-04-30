@@ -4,6 +4,7 @@ title:  "Install Pytorch with GPU support on High Sierra"
 date:   2017-12-15 16:30:00
 categories: pytorch macosx machine_learning
 ---
+- !! Outdated: nvidia does not released `cudnn7.1` for macosx
 - Disable SIP.
 
 - Install `cuda-8`. Though `cuda-9` released for High Sierra, `cudnn-7` is not available for `mac osx`. After installation upgrade `cuda driver` through `system preference` panel, as shown below. If not upgrade to newest `cuda driver` the compiled application cannot run on High Sierra. `cuda-8` only has `10.12` version, but it's fine.  
