@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://zarzen.me/</loc>
+    </url>
+    <url>
+        <loc>http://zarzen.me/posts/</loc>
+    </url>
+    <url>
+        <loc>http://zarzen.me/posts/horovod-installation/</loc>
+        <lastmod>2019-10-17</lastmod>
+    </url>
+    <url>
+        <loc>http://zarzen.me/posts/linux-mint-font/</loc>
+        <lastmod>2017-10-13T14:47:31</lastmod>
+    </url>
+    <url>
+        <loc>http://zarzen.me/posts/logistic-regression/</loc>
+        <lastmod>2018-06-15</lastmod>
+    </url>
+    <url>
+        <loc>http://zarzen.me/posts/pytorch-on-macosx/</loc>
+        <lastmod>2017-12-15T16:30:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zarzen.me/posts/spacemacs-cheatsheet/</loc>
+        <lastmod>2017-08-18T15:49:41</lastmod>
+    </url>
+    <url>
+        <loc>http://zarzen.me/posts/tensorflow-tips/</loc>
+        <lastmod>2017-08-26T20:18:31</lastmod>
+    </url>
+</urlset>
