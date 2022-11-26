@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+Zhen Zhang
+</h1>
+<table>
+  <tbody>
+    <td><img src="photo.jpeg" alt="" width="120px"/></td>
+    <td align="left">
+      <p>I am a Ph.D. candidate majoring in Computer Science at Johns Hopkins
+        University I am fortunately advised by
+        <a href="https://xinjin.github.io/">Prof. Xin Jin</a>.
+      </p>
+      <p>
+        My research interests are primarily on distributed training/inference
+        systems for deep learning models,
+        e.g., <a href="https://en.wikipedia.org/wiki/Foundation_models">foundation
+        models</a>.
+      </p>
+
+    </td>
+  </tbody>
+
+</table>
+<hr />
+
+
+<h1>Publications</h1>
+<ul>
+  <li> MiCS: Near-linear Scaling for Training Gigantic Model on Public Cloud <br />
+    <b>Zhen Zhang</b>, Shuai Zheng, Yida Wang, Justin Chiu, George Karypis, Trishul Chilimbi, Mu Li, Xin Jin <br/>
+    VLDB, 2023
+  </li>
+  <li>
+    PipeSwitch: Fast Pipelined Context Switching for Deep Learning Applications <br />
+    Zhihao Bai, <b>Zhen Zhang</b>, Yibo Zhu, Xin Jin <br/>
+    OSDI, 2020
+  </li>
+  <li>
+    Is Network the Bottleneck of Distributed Training? <br/>
+    <b>Zhen Zhang</b>, Chaokun Chang, Haibin Lin, Yida Wang, Raman Arora, Xin Jin <br/>
+    NetAI, 2020
+  </li>
+  <li>
+    TKPERM: Cross-platform Permission Knowledge Transfer to Detect Overprivileged Third-party Applications <br />
+    Faysal Hossain Shezan, Kaiming Cheng, <b>Zhen Zhang</b>, Yinzhi Cao, Yuan Tian <br/>
+    NDSS, 2020
+  </li>
+  <li>Towards a Secure Zero-rating Framework with Three Parties <br/>
+    Zhiheng Liu, <b>Zhen Zhang</b>, Yinzhi Cao, Zhaohan Xi, Shihao Jing, Humberto La Roche <br/>
+    USENIX Security, 2018
+  </li>
+</ul>
+
+<hr />
+
+<h1>Experiences</h1>
+<ul>
+<li> Applied Scientist Intern at AWS (part-time), Sep. 2022 - Dec. 2022 </li>
+<li> Applied Scientist Intern at AWS (full-time), May. 2022 - Aug. 2022 </li>
+<li> Applied Scientist Intern at AWS (part-time), Sep. 2021 - Jan. 2022 </li>
+<li> Applied Scientist Intern at AWS (full-time), May 2021 - Aug. 2021 </li>
+<li> Applied Scientist Intern at AWS (full-time), May 2020 - Aug. 2020 </li>
+<li> Teaching Assistant at JHU, Sep. 2019 - Dec. 2019 </li>
+<li> Teaching Assistant at JHU, May 2019 - Jul. 2019 </li>
+</ul>
+
+<hr />
+
+<h1>Services</h1>
+<ul>
+  <li>Conference reviewer: INFOCOM'21, INFOCOM'22, OSDI'22(AE), ATC'22(AE), KDD'22, INFOCOM'23</li>
+  <li>Journal reviewer: TOIT'22</li>
+</ul>
+
+<hr />
+
+<h1>Misc.</h1>
+<p>Old blog posts: <a href="{{ get_url(path='@/posts/_index.md') }}">here</a>.</p>
+{% endblock content %}
