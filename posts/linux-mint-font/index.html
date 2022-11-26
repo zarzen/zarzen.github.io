@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Zhen Zhang's personl website</title>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  Config Chinese Fonts on Linux Mint 18.2
+</h1>
+<p class="subtitle"><strong>2017-10-13T14:47:31</strong></p>
+<ul>
+<li>Install Fonts: &quot;DejaVu&quot;, &quot;WenQuanYi&quot; etc.</li>
+<li>Create/edit <code>/etc/fonts/conf.avail/69-language-selector-zh-cn.conf</code> as following:<br />
+content copied from <a href="https://gist.github.com/zhangtai/11075224">this-gist</a></li>
+</ul>
+<pre data-lang="xml" style="background-color:#2b303b;color:#c0c5ce;" class="language-xml "><code class="language-xml" data-lang="xml"><span>&lt;?</span><span style="color:#bf616a;">xml </span><span style="color:#d08770;">version</span><span>=&quot;</span><span style="color:#a3be8c;">1.0</span><span>&quot;?&gt;
+</span><span>&lt;!</span><span style="color:#b48ead;">DOCTYPE </span><span style="color:#bf616a;">fontconfig </span><span style="color:#b48ead;">SYSTEM </span><span>&quot;</span><span style="color:#a3be8c;">fonts.dtd</span><span>&quot;&gt;
+</span><span>&lt;</span><span style="color:#bf616a;">fontconfig</span><span>&gt;
+</span><span>  &lt;</span><span style="color:#bf616a;">match </span><span style="color:#d08770;">target</span><span>=&quot;</span><span style="color:#a3be8c;">pattern</span><span>&quot;&gt;
+</span><span>    &lt;</span><span style="color:#bf616a;">test </span><span style="color:#d08770;">qual</span><span>=&quot;</span><span style="color:#a3be8c;">any</span><span>&quot; </span><span style="color:#d08770;">name</span><span>=&quot;</span><span style="color:#a3be8c;">family</span><span>&quot;&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;serif&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>    &lt;/</span><span style="color:#bf616a;">test</span><span>&gt;
+</span><span>    &lt;</span><span style="color:#bf616a;">edit </span><span style="color:#d08770;">name</span><span>=&quot;</span><span style="color:#a3be8c;">family</span><span>&quot; </span><span style="color:#d08770;">mode</span><span>=&quot;</span><span style="color:#a3be8c;">prepend</span><span>&quot; </span><span style="color:#d08770;">binding</span><span>=&quot;</span><span style="color:#a3be8c;">strong</span><span>&quot;&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;DejaVu Serif&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;Bitstream Vera Serif&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;HYSong&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL UMing CN&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL UMing HK&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL ShanHeiSun Uni&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL New Sung&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;WenQuanYi Bitmap Song&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL UKai CN&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL ZenKai Uni&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>    &lt;/</span><span style="color:#bf616a;">edit</span><span>&gt;
+</span><span>  &lt;/</span><span style="color:#bf616a;">match</span><span>&gt;
+</span><span>  &lt;</span><span style="color:#bf616a;">match </span><span style="color:#d08770;">target</span><span>=&quot;</span><span style="color:#a3be8c;">pattern</span><span>&quot;&gt;
+</span><span>    &lt;</span><span style="color:#bf616a;">test </span><span style="color:#d08770;">qual</span><span>=&quot;</span><span style="color:#a3be8c;">any</span><span>&quot; </span><span style="color:#d08770;">name</span><span>=&quot;</span><span style="color:#a3be8c;">family</span><span>&quot;&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;sans-serif&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>    &lt;/</span><span style="color:#bf616a;">test</span><span>&gt;
+</span><span>    &lt;</span><span style="color:#bf616a;">edit </span><span style="color:#d08770;">name</span><span>=&quot;</span><span style="color:#a3be8c;">family</span><span>&quot; </span><span style="color:#d08770;">mode</span><span>=&quot;</span><span style="color:#a3be8c;">prepend</span><span>&quot; </span><span style="color:#d08770;">binding</span><span>=&quot;</span><span style="color:#a3be8c;">strong</span><span>&quot;&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;DejaVu Sans&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;Bitstream Vera Sans&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;WenQuanYi Micro Hei&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;WenQuanYi Zen Hei&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;Droid Sans Fallback&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;HYSong&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL UMing CN&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL UMing HK&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL ShanHeiSun Uni&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL New Sung&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL UKai CN&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL ZenKai Uni&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>    &lt;/</span><span style="color:#bf616a;">edit</span><span>&gt;
+</span><span>  &lt;/</span><span style="color:#bf616a;">match</span><span>&gt;
+</span><span>  &lt;</span><span style="color:#bf616a;">match </span><span style="color:#d08770;">target</span><span>=&quot;</span><span style="color:#a3be8c;">pattern</span><span>&quot;&gt;
+</span><span>    &lt;</span><span style="color:#bf616a;">test </span><span style="color:#d08770;">qual</span><span>=&quot;</span><span style="color:#a3be8c;">any</span><span>&quot; </span><span style="color:#d08770;">name</span><span>=&quot;</span><span style="color:#a3be8c;">family</span><span>&quot;&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;monospace&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>    &lt;/</span><span style="color:#bf616a;">test</span><span>&gt;
+</span><span>    &lt;</span><span style="color:#bf616a;">edit </span><span style="color:#d08770;">name</span><span>=&quot;</span><span style="color:#a3be8c;">family</span><span>&quot; </span><span style="color:#d08770;">mode</span><span>=&quot;</span><span style="color:#a3be8c;">prepend</span><span>&quot; </span><span style="color:#d08770;">binding</span><span>=&quot;</span><span style="color:#a3be8c;">strong</span><span>&quot;&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;DejaVu Sans Mono&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;Bitstream Vera Sans Mono&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;WenQuanYi Micro Hei Mono&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;WenQuanYi Zen Hei Mono&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;Droid Sans Fallback&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;HYSong&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL UMing CN&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL UMing HK&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL ShanHeiSun Uni&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL New Sung&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL UKai CN&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>      &lt;</span><span style="color:#bf616a;">string</span><span>&gt;AR PL ZenKai Uni&lt;/</span><span style="color:#bf616a;">string</span><span>&gt;
+</span><span>    &lt;/</span><span style="color:#bf616a;">edit</span><span>&gt;
+</span><span>  &lt;/</span><span style="color:#bf616a;">match</span><span>&gt;
+</span><span>&lt;/</span><span style="color:#bf616a;">fontconfig</span><span>&gt;
+</span></code></pre>
+<ul>
+<li>Create a symbolic link at <code>/etc/fonts/conf.d</code></li>
+</ul>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cd /etc/fonts/conf.d
+</span><span>sudo ln -s ../conf.avail/69-language-selector-zh-cn.conf 69-language-selector-zh-cn.conf
+</span></code></pre>
+
+
+    </div>
+  </section>
+</body>
+
+</html>

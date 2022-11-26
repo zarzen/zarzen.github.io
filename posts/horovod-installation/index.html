@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Zhen Zhang's personl website</title>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  Running Horovod on two nodes
+</h1>
+<p class="subtitle"><strong>2019-10-17</strong></p>
+<h1 id="install-openmpi">Install OpenMPI</h1>
+<p>If Open MPI is not available, Horovod can still be installed without error, Because it will use <code>gloo</code> as backend. While <code>gloo</code> has
+some issues when no GPU is available or only one GPU is available. After the installation Open MPI you need to make sure Horovod is able to find it. Otherwise, it still compiles without Open MPI support.</p>
+<p>Install MPI on with following commands:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span># download and compile from source
+</span><span>wget https://download.open-mpi.org/release/open-mpi/v4.0/openmpi-4.0.2.tar.gz
+</span><span>
+</span><span>gunzip -c openmpi-4.0.2.tar.gz | tar xf -
+</span><span>cd openmpi-4.0.2
+</span><span>./configure --prefix=/usr/local
+</span><span>
+</span><span>make -j25 all
+</span><span>sudo make install
+</span><span>
+</span></code></pre>
+<p>After installation run <code>sudo ldconfig</code> to refresh library loading paths.</p>
+<h1 id="install-horovod">Install Horovod</h1>
+<p>Install Machine Learning frameworks like <code>tensorflow</code>, <code>pytorch</code> or <code>mxnet</code> first, so that Horovod will compile with corresponding supports.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>pip install tensorflow
+</span><span>pip install torch torchvision
+</span><span>pip install mxnet
+</span><span>pip install mxnet-mkl
+</span><span>
+</span><span>pip install horovod
+</span></code></pre>
+<p>In case installed horovod is not with open MPI support at first, you need to reinstall, after doing <code>sudo ldconfig</code>.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>pip uninstall horovod
+</span><span>
+</span><span>pip install --no-cache-dir horovod
+</span></code></pre>
+<h1 id="running-horovod">Running Horovod</h1>
+<p>First, we need to make sure all workers are configured with password-less login(using ssh-keys). Next, if you are going to run jobs on local, then using <code>localhost</code> instead of hostname of the local machine. It took me for a while to figure out why <code>mpirun</code> hangs there.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span># running with horovodrun
+</span><span>horovodrun -np 4 \
+</span><span>    -H &lt;another-host&gt;:2,localhost:2 \ 
+</span><span>    python tensorflow_mnist.py
+</span><span>
+</span><span># running with mpirun
+</span><span>mpirun -np 2 \
+</span><span>    -H localhost:1,&lt;another-host&gt;:1 \
+</span><span>    -bind-to none -map-by slot \
+</span><span>    -x NCCL_DEBUG=INFO -x PATH \
+</span><span>    -x NCCL_SOCKET_IFNAME=^lo,docker0 \
+</span><span>    -mca pml ob1 -mca btl ^openib \
+</span><span>    -mca btl_tcp_if_exclude lo,docker0 \
+</span><span>    python tensorflow_mnist.py
+</span></code></pre>
+
+
+    </div>
+  </section>
+</body>
+
+</html>

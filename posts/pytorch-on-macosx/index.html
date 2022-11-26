@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Zhen Zhang's personl website</title>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  Install Pytorch with GPU support on High Sierra
+</h1>
+<p class="subtitle"><strong>2017-12-15T16:30:00</strong></p>
+<ul>
+<li>
+<p>!! Outdated: nvidia does not released <code>cudnn7.1</code> for macosx</p>
+</li>
+<li>
+<p>Disable SIP.</p>
+</li>
+<li>
+<p>Install <code>cuda-8</code>. Though <code>cuda-9</code> released for High Sierra, <code>cudnn-7</code> is not available for <code>mac osx</code>. After installation upgrade <code>cuda driver</code> through <code>system preference</code> panel, as shown below. If not upgrade to newest <code>cuda driver</code> the compiled application cannot run on High Sierra. <code>cuda-8</code> only has <code>10.12</code> version, but it's fine.<br />
+<img src="/imgs/cuda_panel.png" alt="CUDA panel" /></p>
+</li>
+</ul>
+<p><img src="/imgs/cuda_upgrade.png" alt="Upgrade CUDA driver" /></p>
+<ul>
+<li>
+<p>Download <code>cudnn-v6</code> for <code>mac osx</code> from <a href="https://developer.nvidia.com/cudnn">Nvidia cudnn</a> and install it.</p>
+</li>
+<li>
+<p>Install <code>Xcode-8.2.x</code>, either <code>8.2</code> or <code>8.2.1</code> is fine, based on documents of <code>cuda-8.0.61</code>. Download <code>Xcode</code> from <a href="https://developer.apple.com/download/more/">Apple Developers Download Center</a>. We can install different versions of <code>Xcode</code>  by renaming <code>Xcode</code> to <code>Xcode_8_2</code>. Once installed, select right version for Command Line Tools, by preference panel of Xcode as shown in following. 
+<img src="/imgs/choose_CLT_version.png" alt="Choose CLT" /></p>
+</li>
+<li>
+<p>Config environment variables in <code>.zshrc</code> or <code>.bash_profile</code> or other shell configurations. Add following content:</p>
+</li>
+</ul>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">export </span><span style="color:#bf616a;">DYLD_LIBRARY_PATH</span><span>=</span><span style="color:#a3be8c;">/usr/local/cuda/lib:</span><span>$</span><span style="color:#bf616a;">DYLD_LIBRARY_PATH
+</span><span style="color:#b48ead;">export </span><span style="color:#bf616a;">LD_LIBRARY_PATH</span><span>=</span><span style="color:#a3be8c;">/usr/local/cuda/lib</span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">LD_LIBRARY_PATH</span><span>:+</span><span style="color:#a3be8c;">:</span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">LD_LIBRARY_PATH</span><span style="color:#a3be8c;">}}
+</span><span style="color:#b48ead;">export </span><span style="color:#bf616a;">PATH</span><span>=</span><span style="color:#a3be8c;">/usr/local/cuda/bin</span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">PATH</span><span>:+</span><span style="color:#a3be8c;">:</span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">PATH</span><span style="color:#a3be8c;">}}
+</span></code></pre>
+<ul>
+<li>Make sure <code>anaconda</code> has installed and upgraded needed packages. </li>
+</ul>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">conda</span><span> install numpy pyyaml setuptools cmake cffi </span><span style="color:#65737e;"># provided by pytorch README
+</span><span style="color:#65737e;"># I remember some packages need newest version of mkl which is 2018-01, but default mkl in anaconda is mkl2017
+</span><span style="color:#bf616a;">conda</span><span> upgrade mkl 
+</span></code></pre>
+<ul>
+<li>Start compiling (last command is optional):</li>
+</ul>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">export </span><span style="color:#bf616a;">CMAKE_PREFIX_PATH</span><span>=</span><span style="color:#b48ead;">[</span><span style="color:#a3be8c;">anaconda root directory</span><span style="color:#b48ead;">] </span><span style="color:#65737e;"># temporal env variable
+</span><span style="color:#65737e;"># get source code
+</span><span style="color:#65737e;"># following command will get newest pytorch v0.4.0
+</span><span style="color:#bf616a;">git</span><span> clone</span><span style="color:#bf616a;"> --recursive</span><span> https://github.com/pytorch/pytorch
+</span><span style="color:#96b5b4;">cd</span><span> pytorch
+</span><span style="color:#65737e;"># make and install
+</span><span style="color:#65737e;"># it is fine using target 10.9; 
+</span><span style="color:#bf616a;">MACOSX_DEPLOYMENT_TARGET</span><span>=</span><span style="color:#a3be8c;">10.9 </span><span style="color:#bf616a;">CC</span><span>=</span><span style="color:#a3be8c;">clang </span><span style="color:#bf616a;">CXX</span><span>=</span><span style="color:#a3be8c;">clang++ </span><span style="color:#bf616a;">python</span><span> setup.py install
+</span><span style="color:#65737e;"># Optional !!!!!! if it failed before; do clean first
+</span><span style="color:#bf616a;">MACOSX_DEPLOYMENT_TARGET</span><span>=</span><span style="color:#a3be8c;">10.9 </span><span style="color:#bf616a;">CC</span><span>=</span><span style="color:#a3be8c;">clang </span><span style="color:#bf616a;">CXX</span><span>=</span><span style="color:#a3be8c;">clang++ </span><span style="color:#bf616a;">python</span><span> setup.py clean 
+</span></code></pre>
+
+
+    </div>
+  </section>
+</body>
+
+</html>

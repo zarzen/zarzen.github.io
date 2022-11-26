@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Zhen Zhang's personl website</title>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  Deriving Gradient Descent Algorithm for Logistic Regression
+</h1>
+<p class="subtitle"><strong>2018-06-15</strong></p>
+<p>Logistic regression is a model that applying logistic function 
+on the output of a linear regression model. Because the output of logistic function is restricted in range $[0, 1]$, we can 
+interpret the output as a probability measure. Then we can use
+Maximize Likelihood Estimation (MLE) to estimate the model
+parameters $\theta$.</p>
+<p>Logistic function defined as </p>
+<p>$$ g(z) = \frac{1}{1 + e^{-z}} $$</p>
+<p>where $z = \theta ^\top x$, $x \in \mathbb{R}^d$, $\theta \in \mathbb{R}^d$. </p>
+<p>Consider binary classification problem, we denote $h_{\theta}(x)$ output as probability for positive class: 
+$\mathbb{P}[y=1 | x; \theta] = h_{\theta}(x)$, 
+Thus,
+$\mathbb{P}[y=0 | x; \theta] =1- h_{\theta}(x)$.
+We can write down the condition probability distribution function (probability mass function here):</p>
+<p>$$ p(y|x; \theta) = h_{\theta}(x)^y (1- h_{\theta}(x))^{(1-y)} $$</p>
+<p>This formula is for single sample $x$, consider a set of data $\mathbf{X}, \mathbf{y}$ sampled independently from identical distribution (i.i.d) the corresponding distribution function is the product of pmf/pdf of each sample:</p>
+<p>$$ p(\mathbf{y}|\mathbf{X};\theta) = \prod_{i=1}^n p(y^{(i)}|x^{(i)}; \theta)$$</p>
+<p>The term $ p(\mathbf{y}|\mathbf{X}; \theta) $ here is the conditional likelihood, since it is conditioned on 
+$ \mathbf{X} $. We can derive this term from following procedure:</p>
+<p>$$
+L\left(\theta | (\mathbf{X}, \mathbf{y})\right) = p((\mathbf{X}, \mathbf{y});\theta) = p(\mathbf{y}|\mathbf{X}; \theta)p(\mathbf{X}; \theta)
+$$</p>
+<p>The MLE procedure is to modify $\theta$ to maximize likelihood function. The general idea is taking the derivative of the likelihood function, then perform gradient ascend procedure. While taking the gradient of a product is difficult, a very long chain rule, instead we maximize the log-likelihood function, which transform the product into big-sum. </p>
+<p>$$
+log (p(\mathbf{y}|\mathbf{X};\theta)) = \sum_i log(p(y^{(i)}|x^{(i)}; \theta)) \
+= \sum_i y^{(i)} log(h_{\theta}(x^{(i)})) + (1- y^{(i)}) log(1-h_{\theta}(x^{(i)}))
+$$</p>
+<p>We can compute the gradient for single sample $(x^{(i)}, y^{(i)})$ then sum them up. According to matrix cook book, we use $\frac{\partial a^\top b}{\partial a} = b$</p>
+<p>$$
+\frac{\partial p(y|x; \theta)}{\partial \theta} = 
+(y\frac{1}{g(\theta ^\top x)} + (1-y)\frac{1}{1-g(\theta ^\top x)}) \frac{\partial}{\partial \theta} g(\theta ^\top x) \
+= (y\frac{1}{g(\theta ^\top x)} + (1-y)\frac{1}{1-g(\theta ^\top x)}) g(\theta ^\top x)(1-g(\theta ^\top x)) \frac{\partial \theta^\top x }{\partial \theta} \
+= (y-h_{\theta}(x)) x
+$$</p>
+<p>Thus, gradient ascend procedure for $\theta$ updating as follows:</p>
+<p>$$
+\theta = \theta + \alpha (y-h_{\theta}(x)) x
+$$</p>
+<p>It is also possible to derive from squared loss function $(h_{\theta}(x) - y)^2$, but the derivatives are not that clean. And I see people argue the computational efficiency is not good. </p>
+
+
+    </div>
+  </section>
+</body>
+
+</html>

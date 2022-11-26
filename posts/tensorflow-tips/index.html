@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Zhen Zhang's personl website</title>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  Tensorflow Tips
+</h1>
+<p class="subtitle"><strong>2017-08-26T20:18:31</strong></p>
+<h2 id="set-visible-gpu-to-tensorflow">Set visible GPU to <code>tensorflow</code></h2>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>os
+</span><span>os.environ[&quot;</span><span style="color:#a3be8c;">CUDA_DEVICE_ORDER</span><span>&quot;] = &quot;</span><span style="color:#a3be8c;">PCI_BUS_ID</span><span>&quot;
+</span><span>os.environ[&quot;</span><span style="color:#a3be8c;">CUDA_VISIBLE_DEVICES</span><span>&quot;] = &quot;</span><span style="color:#a3be8c;">2</span><span>&quot;
+</span></code></pre>
+<h2 id="set-memory-usage">Set memory usage</h2>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>gpu_options = tf.</span><span style="color:#bf616a;">GPUOptions</span><span>(</span><span style="color:#bf616a;">per_process_gpu_memory_fraction</span><span>=</span><span style="color:#d08770;">0.25</span><span>)
+</span><span>sess = tf.</span><span style="color:#bf616a;">Session</span><span>(</span><span style="color:#bf616a;">config</span><span>=tf.</span><span style="color:#bf616a;">ConfigProto</span><span>(</span><span style="color:#bf616a;">gpu_options</span><span>=gpu_options))
+</span></code></pre>
+
+
+    </div>
+  </section>
+</body>
+
+</html>
